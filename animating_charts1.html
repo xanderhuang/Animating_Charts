@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans TC"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fredericka the Great">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Passero+One">
+
+    <title>Animating Charts</title>
+
+    <style>
+        .bardiv {
+            position: relative;
+            height: 25px;
+            width: 250px;
+            left: 0;
+            background-color: #003049;
+            color: white;
+        }
+        
+        .animatebar div:not(.slide) {
+            opacity: 0;
+        }
+        
+        .slide {
+            animation-name: slide;
+            animation-duration: 1s;
+            visibility: visible;
+        }
+        
+        @keyframes slide {
+            0% {
+                opacity: 0;
+                transform: scaleX(0);
+                transform-origin: left center;
+            }
+            100% {
+                opacity: 1;
+                transform: scaleX(1);
+                transform-origin: left center;
+            }
+        }
+        
+        h1 {
+            font-family: "Fredericka the Great", "Lucida Grande", Helvetica, "Helvetica Neue", "HelveticaNeue-Light", "Helvetica Neue Light", Arial, sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div style="position:fixed;top:50vh;width:100%;background-color:#c1121f;height:1px;z-index:10"></div>
+    <div style="position:fixed;top:80vh;width:100%;background-color:#c1121f;height:1px;z-index:10"></div>
+
+    <div style="min-height: 100vh; background-color: #fdf0d5; color:black;">
+        <h1>Animating Chart by Keyframe</h1>
+    </div>
+
+    <div style="height:100vh;">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>全球最高日本動畫電影票房</h1>
+            </div>
+            <div class="col-md-8 animatebar">
+                <div class="text-right bardiv" style="top:10px;width:712px">君の名は(2016)： 356 M &nbsp;</div>
+                <div class="text-right bardiv" style="top:40px;width:578px">千と千尋の神隠し(2001)： 289 M &nbsp;</div>
+                <div class="text-right bardiv" style="top:70px;width:470px">ハウルの動く城(2004)： 235 M &nbsp;</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron" style="min-height: 500px;background-color: #669bbc;color:white;border-radius:0;"></div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                var scrolled = $(window).scrollTop();
+                var winh = $(window).height();
+                $(".animatebar").each(function() {
+                    var objpos = $(this).offset().top;
+                    if (objpos - winh * 0.5 < scrolled) {
+                        $(this).children().addClass("slide");
+                    }
+                    if (scrolled == 0) {
+                        $(this).children().removeClass("slide");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
